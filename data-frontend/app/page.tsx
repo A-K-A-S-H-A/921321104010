@@ -22,7 +22,7 @@ const Home = () => {
     setLoading(true);
     const company = "AMZ";
     const top = 10;
-    const minPrice = 0;
+    const minPrice = 1;
     const maxPrice = 500000;
     try {
       const response = await axios.get(
