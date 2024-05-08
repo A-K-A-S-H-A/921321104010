@@ -1,0 +1,43 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+
+model Product {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  category    String
+  company     String
+  price       Float
+  rating      Float?   
+  discount    Float?   
+  availability Boolean
+  imageURL    String?  
+  createdAt   DateTime @default(now()) 
+  updatedAt   DateTime @updatedAt 
+}
+
+
+model Cache {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  query      String   @unique 
+  response   Json     
+  createdAt  DateTime @default(now())
+  validUntil DateTime
+}
+
+
+model APILog {
+ id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  endpoint  String   
+  query     String? 
+  response  String?  
+  cost      Float   
+  createdAt DateTime @default(now())
+}
